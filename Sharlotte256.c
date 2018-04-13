@@ -144,7 +144,6 @@ unsigned char *Sharlotte256(const unsigned char *data, size_t len,
     unsigned char sizedesc[8];
     WriteBE64(sizedesc, len << 3);
     // Write(sizedesc, 8);
-    const unsigned char *end = sizedesc + 8;
     size_t bufsize = bytes % 64;
     memcpy(buf + bufsize, sizedesc, 64 - bufsize);
     Transform(s, buf, 1);
@@ -161,7 +160,7 @@ unsigned char *Sharlotte256(const unsigned char *data, size_t len,
   return result;
 }
 
-Sharlotte256_func_t AutoSha256(Sharlotte256_func_t alternativeFunc) {
-  if (SSE4Compat()) return SHA256;
+Sharlotte256_func_t AutoSha256Setter(Sharlotte256_func_t alternativeFunc) {
+  if (SSE4Compat()) return Sharlotte256;
   return alternativeFunc;
 }
