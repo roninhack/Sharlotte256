@@ -5,6 +5,8 @@
 #  error This library is not supported by your platform!
 #endif
 
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
